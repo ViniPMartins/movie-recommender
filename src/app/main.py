@@ -1,7 +1,9 @@
 from flask import Flask, request
+from flask_basicauth import BasicAuth
 from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
 import pickle
+import os
 
 class List_to_kmeans(BaseEstimator, TransformerMixin):
 
@@ -25,17 +27,23 @@ class List_to_kmeans(BaseEstimator, TransformerMixin):
 
         return [dummies_generos]
 
-pipeline = pickle.load(open('./models-serializer/pipeline.sav', 'rb'))
-kmeans = pickle.load(open('./models-serializer/kmeans_algorithm.sav', 'rb'))
-movies_ratings = pd.read_csv('database-csv/movies_ratings.csv', index_col='movieId')
+pipeline = pickle.load(open('../../models/pipeline.sav', 'rb'))
+kmeans = pickle.load(open('../../models/kmeans_algorithm.sav', 'rb'))
+movies_ratings = pd.read_csv('../../data/processed/movies_ratings.csv', index_col='movieId')
 
 app = Flask(__name__)
+app.config['BASIC_AUTH_USERNAME'] = os.environ.get('BASIC_AUTH_USERNAME')
+app.config['BASIC_AUTH_PASSWORD'] = os.environ.get('BASIC_AUTH_PASSWORD')
+
+basic_auth = BasicAuth(app)
 
 @app.route('/')
+@basic_auth.required
 def home():
     return "API Rodando"
 
 @app.route('/api/recommender_movie/', methods=['POST'])
+@basic_auth.required
 def recommender_movie():
     params = request.get_json()
     generos_pipe = pipeline.transform(params['generos'])
@@ -48,4 +56,4 @@ def recommender_movie():
     return movies_recomended.to_json()
 
 if '__main__' == __name__:
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
