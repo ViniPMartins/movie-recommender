@@ -27,9 +27,9 @@ class List_to_kmeans(BaseEstimator, TransformerMixin):
 
         return [dummies_generos]
 
-pipeline = pickle.load(open('../../models/pipeline.sav', 'rb'))
-kmeans = pickle.load(open('../../models/kmeans_algorithm.sav', 'rb'))
-movies_ratings = pd.read_csv('../../data/processed/movies_ratings.csv', index_col='movieId')
+pipeline = pickle.load(open('models/pipeline.sav', 'rb'))
+kmeans = pickle.load(open('models/kmeans_algorithm.sav', 'rb'))
+movies_ratings = pd.read_csv('data/processed/movies_ratings.csv', index_col='movieId')
 
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = os.environ.get('BASIC_AUTH_USERNAME')
