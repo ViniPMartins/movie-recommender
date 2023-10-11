@@ -1,11 +1,28 @@
 services:
   ml-api:
+    container_name: ml-api
     build:
       context: .
+      dockerfile: Dockerfile-api
       args:
         - BASIC_AUTH_USERNAME_ARG=usuario1
-        - BASIC_AUTH_PASSWORD_ARG=1234
-        
+        - BASIC_AUTH_PASSWORD_ARG=1234 
     ports:
       - "5000:5000"
+    networks:
+      - server_api
+
+  home:
+    container_name: home
+    build:
+      context: .
+      dockerfile: Dockerfile-home
+    ports:
+      - "3000:3000"
+    networks:
+      - server_api
+
+networks:
+  server_api:
+    driver: bridge
 
