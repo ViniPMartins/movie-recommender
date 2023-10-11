@@ -17,6 +17,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-home
+    depends_on: 
+      - ml-api
     ports:
       - "3000:3000"
     networks:

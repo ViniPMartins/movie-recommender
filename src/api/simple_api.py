@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "API Rodando"
+    return "Basic API is running"
 
 @app.route("/api", methods=['POST'])
 def api():

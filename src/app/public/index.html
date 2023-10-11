@@ -33,23 +33,36 @@
             });
         });
 
+        fetch('/api', {
+                method: 'GET', // ou 'POST'
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch((error) => {
+            console.error('Error:', error);
+        });
+
         function selecao_atual() {
             var select = document.getElementById("multiple-checkboxes")
             var selected = [...select.selectedOptions].map(option => option.value);
             return selected
         }
 
-        const selected = selecao_atual()
+        document.querySelector("#button-request").addEventListener("click", function(){
+
+            const selected = selecao_atual()
             var data = {
                 generos: selected,
                 n_min_aval: 50,
                 rating_min_aval: 3
             }
 
-        document.querySelector("#button-request").addEventListener("click", function(){
-
             fetch('/api/data', {
-                method: 'GET', // ou 'POST'
+                method: 'POST', // Altere 'GET' para 'POST'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(selected) // Dados que você deseja enviar
             })
             .then(response => response.json())
             .then(data => console.log(data))
