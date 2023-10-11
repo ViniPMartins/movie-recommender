@@ -3,8 +3,8 @@ services:
     build:
       context: .
       args:
-        - BASIC_AUTH_USERNAME_ARG=vinicius
-        - BASIC_AUTH_PASSWORD_ARG=alura
+        - BASIC_AUTH_USERNAME_ARG=usuario1
+        - BASIC_AUTH_PASSWORD_ARG=1234
         
     ports:
       - "5000:5000"

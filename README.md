@@ -1,55 +1,60 @@
-mlops-deploy
+API Recomendação de Filmes
 ==============================
 
-Deploy de API para recomedacao de filmes
+> :construction: Projeto em construção :construction:
 
-Project Organization
+Este projeto é o desenvolvimento de um API que faz a recomendação de filmes através de um modelo de machine learning (KMEANS).
+
+Essa API contém 2 endpoints:
+
+ - `/` -> Endpoint principal que informa se a aplicação está rodando.
+ - `/api/recommender_movie/` -> Endpoint que aceita requisições do tipo POST e retorna um JSON com os filmes recomendados.
+
+As requisições são passadas no formato JSON no seguinte modelo:
+
+```python
+str_json = {
+    'generos':['Comedy', 'Romance'], # Lista com os generos que podem ser recomendados
+    'n_min_aval':50, # Quantidades minima de notas que os filmes receberam
+    'rating_min_aval':3 # Avaliação média mínima que os filmes receberam
+}
+```
+
+Os generos possíveis são: 
+```python
+['(no genres listed)', 'Action', 'Adventure', 'Animation', 'Children',
+        'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir',
+        'Horror', 'IMAX', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller',
+        'War', 'Western']
+```
+
+É possivel visualizar um teste da API em: notebooks/Teste API.ipynb
+
+Para rodar, digite no terminal:
+
+`docker compose up`
+
+Organização do Projeto
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
+    ├── README.md           <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   └── processed       <- The final, canonical data sets for modeling.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+    ├── models              <- Trained and serialized models, model predictions, or model summaries
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    ├── notebooks           <- Jupyter notebooks.
     │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
+    ├── requirements.txt    <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
+    ├── src                 <- Source code for use in this project.
     │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
+    │   └── app             <- Scripts to run application
+    │       └── main.py
     │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    └── docker-compose.yaml <- docker compose file to build and run application
 
 
 --------
