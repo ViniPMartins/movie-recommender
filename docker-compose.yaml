@@ -1,0 +1,11 @@
+services:
+  ml-api:
+    build:
+      context: .
+      args:
+        - BASIC_AUTH_USERNAME_ARG=vinicius
+        - BASIC_AUTH_PASSWORD_ARG=alura
+        
+    ports:
+      - "5000:5000"
+
