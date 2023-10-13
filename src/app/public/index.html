@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-    <title>Movie Recommender</title>
-</head>
-<body>
-    <div class="">
-        <strong>Select Language:</strong>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Movie Recommender API</title>
+  </head>
+  <body>
+    <h1 id="title-page">Lorem ipsum dolor sit amet</h1>
+    <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas voluptatibus ducimus, totam nemo maiores nam non earum neque eos veniam odit nisi aut expedita laboriosam illo fugit debitis enim.
+    </p>
+    <div class="movie-genres">
+        <strong>Select Movie:</strong>
         <select id="multiple-checkboxes" multiple="multiple">
             <option value="Action">Action</option>
             <option value="Adventure">Adventure</option>
@@ -34,10 +43,25 @@
             <option value="War">War</option>
             <option value="Western">Western</option>
         </select>
-        <label class="form-label select-label">Example label</label>
     </div>
 
-    <button id="button-request">Ver Recomendações</button>
+    <div class="rangeSelect">
+        <label for="customRange1" id="labelRange1" class="form-label">Minimum rating</label>
+        <input type="range" class="form-range" min="0" max="5" step="0.1" id="customRange1">
+    </div>
+
+    <div class="rangeSelect">
+        <label for="customRange2" id="labelRange2" class="form-label">Minimum number of reviews</label>
+        <input type="range" class="form-range" min="10" max="100" step="1" id="customRange2">
+    </div>
+
+    <div class="btn-select">
+        <button id="button-request">Recommendations</button>
+    </div>
+
+    <div class="table-content">
+        
+    </div>
 
     <script type='module'>
         $(document).ready(function() {
@@ -45,6 +69,24 @@
                 includeSelectAllOption: true,
             });
         });
+
+        const labelRange1 = document.querySelector("#labelRange1")
+        const textLabel1 = labelRange1.textContent
+        const range1 = document.querySelector("#customRange1")
+
+        range1.addEventListener("change", function(){
+            var valueRange = range1.value
+            labelRange1.textContent = textLabel1 + `: ${valueRange}`
+        })
+        
+        const labelRange2 = document.querySelector("#labelRange2")
+        const textLabel2 = labelRange2.textContent
+        const range2 = document.querySelector("#customRange2")
+
+        range2.addEventListener("click", function(){
+            var valueRange = range2.value
+            labelRange2.textContent = textLabel2 + `: ${valueRange}`
+        })
 
         fetch('/api', {
                 method: 'GET', // ou 'POST'
@@ -58,16 +100,25 @@
         function selecao_atual() {
             var select = document.getElementById("multiple-checkboxes")
             var selected = [...select.selectedOptions].map(option => option.value);
-            return selected
+            var min_rating = document.getElementById("customRange1").value * 1
+            var min_num_aval = document.getElementById("customRange2").value * 1
+            return {
+                selected: selected,
+                min_rating: min_rating,
+                min_num_aval: min_num_aval
+            }
         }
 
         document.querySelector("#button-request").addEventListener("click", function(){
 
-            const selected = selecao_atual()
+            const params = selecao_atual()
+
+            console.log(params)
+
             var data_json = {
-                generos: selected,
-                n_min_aval: 50,
-                rating_min_aval: 3
+                generos: params.selected,
+                n_min_aval: 3,
+                rating_min_aval: 50
             }
 
             fetch('/api/data', {

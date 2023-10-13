@@ -1,0 +1,45 @@
+body {
+    margin: 10px;
+    text-align: center;
+}
+
+#title-page {
+    padding: 5px;
+    border-bottom: 1px solid grey;
+    color: rgb(63, 63, 63);
+    font-weight: bold;
+}
+
+p {
+    padding: 10px;
+}
+
+.rangeSelect {
+    margin: 15px 25% 15px 25%;
+    padding: 10px 10px 10px 10px;
+}
+
+#button-request {
+    padding: 15px 25px 15px 25px;
+    color: rgb(255,255,255);
+    background-color: rgb(39, 98, 162);
+    font-size: 1.5rem;
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #495057;
+    background: #495057;
+}
+
+#button-request:hover {
+    background: #fff;
+    color: #495057
+}
