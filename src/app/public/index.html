@@ -13,15 +13,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <link rel="stylesheet" href="style.css">
 
-    <title>Movie Recommender API</title>
+    <title>Movie Recommendations</title>
   </head>
   <body>
-    <h1 id="title-page">Lorem ipsum dolor sit amet</h1>
+    <h1 id="title-page">RECOMMENDING MOVIES WITH AI</h1>
     <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas voluptatibus ducimus, totam nemo maiores nam non earum neque eos veniam odit nisi aut expedita laboriosam illo fugit debitis enim.
+        This is an application that, through an API, consults a machine learning model called KMEANS and 
+        recommends movies according to your choice. You can select the genre of the movie, 
+        the minimum average rating, and the minimum number of reviews the movie can have received.
+    </p>
+    <p>
+        The source code can be find <a target="_blank" href="https://github.com/ViniPMartins/MLOPS">here</a>
     </p>
     <div class="movie-genres">
-        <strong>Select Movie:</strong>
+        <strong>Select the genres of the movies:</strong>
         <select id="multiple-checkboxes" multiple="multiple">
             <option value="Action">Action</option>
             <option value="Adventure">Adventure</option>
@@ -46,20 +51,20 @@
     </div>
 
     <div class="rangeSelect">
-        <label for="customRange1" id="labelRange1" class="form-label">Minimum rating</label>
+        <label for="customRange1" id="labelRange1" class="form-label">Minimum Average Rating</label>
         <input type="range" class="form-range" min="0" max="5" step="0.1" id="customRange1">
     </div>
 
     <div class="rangeSelect">
-        <label for="customRange2" id="labelRange2" class="form-label">Minimum number of reviews</label>
+        <label for="customRange2" id="labelRange2" class="form-label">Minimum Number of Reviews</label>
         <input type="range" class="form-range" min="10" max="100" step="1" id="customRange2">
     </div>
 
     <div class="btn-select">
-        <button id="button-request">Recommendations</button>
+        <button id="button-request">Generate recommendations</button>
     </div>
 
-    <div class="table-content">
+    <div id="table-content">
         
     </div>
 
@@ -113,12 +118,35 @@
 
             const params = selecao_atual()
 
-            console.log(params)
-
             var data_json = {
                 generos: params.selected,
-                n_min_aval: 3,
-                rating_min_aval: 50
+                n_min_aval: params.min_num_aval,
+                rating_min_aval: params.min_rating
+            }
+
+            function makingTableMovies (listMovies) {
+                const codMovies = Object.keys(listMovies.title)
+                var html = `<table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Genres</td>
+                        <td>Num of Ratings</td>
+                        <td>Mean of rating</td>
+                    </tr></thead><tbody>`
+
+                codMovies.forEach(function(movie) {
+                    console.log(movie)
+                    html += `<tr>
+                        <td>${listMovies.title[movie]}</td>
+                        <td>${listMovies.genres[movie]}</td>
+                        <td>${listMovies.n_rating[movie]}</td>
+                        <td>${parseFloat(listMovies.mean_rating[movie]).toFixed(2)}</td>
+                    </tr>`
+                })
+
+                html += '</tbody></table>'
+                document.querySelector("#table-content").innerHTML = html
             }
 
             fetch('/api/data', {
@@ -129,7 +157,7 @@
                 body: JSON.stringify(data_json) // Dados que você deseja enviar
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => makingTableMovies(data))
                 .catch((error) => {
                 console.error('Error:', error);
                 });

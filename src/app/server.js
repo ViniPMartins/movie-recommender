@@ -26,7 +26,8 @@ app.get('/api', async (req, res) => {
 
 app.post('/api/data', async (req, res) => {
     const url = "http://ml-api:5000/api/recommender_movie/";
-    const data_json = req.body; // Dados recebidos na requisição POST
+    const data_json = req.body;
+    console.log(data_json) // Dados recebidos na requisição POST
     try {
         const response = await axios.post(url, data_json, {
             auth: {

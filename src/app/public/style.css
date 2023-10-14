@@ -12,6 +12,7 @@ body {
 
 p {
     padding: 10px;
+    margin: 10px 15% 10px 15%;
 }
 
 .rangeSelect {
@@ -43,3 +44,12 @@ p {
     background: #fff;
     color: #495057
 }
+
+#table-content {
+    margin: 15px 10% 0 10%;
+}
+
+thead {
+    font-weight: bold;
+}
+

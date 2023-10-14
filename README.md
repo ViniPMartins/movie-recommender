@@ -5,7 +5,9 @@ API Recomendação de Filmes
 
 Este projeto é o desenvolvimento de um API que faz a recomendação de filmes através de um modelo de machine learning (KMEANS).
 
-Essa API contém 2 endpoints:
+A frontend e servido na porta 3000
+
+A API é servida na porta 5000 e contém 2 endpoints:
 
  - `/` -> Endpoint principal que informa se a aplicação está rodando.
  - `/api/recommender_movie/` -> Endpoint que aceita requisições do tipo POST e retorna um JSON com os filmes recomendados.
@@ -22,7 +24,7 @@ str_json = {
 
 Os generos possíveis são: 
 ```python
-['(no genres listed)', 'Action', 'Adventure', 'Animation', 'Children',
+['Action', 'Adventure', 'Animation', 'Children',
         'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir',
         'Horror', 'IMAX', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller',
         'War', 'Western']

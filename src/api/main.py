@@ -51,7 +51,7 @@ def recommender_movie():
 
     movies_recomended = movies_ratings.query(
         f'group=={group_predict} and n_rating>{params["n_min_aval"]} and mean_rating>{params["rating_min_aval"]}'
-        ).sort_values(by='mean_rating', ascending=False)
+        ).sort_values(by='mean_rating', ascending=False).reset_index(drop=True)
     
     return movies_recomended.to_json()
 
