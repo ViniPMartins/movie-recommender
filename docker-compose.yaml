@@ -4,9 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-api
-      args:
-        - BASIC_AUTH_USERNAME_ARG=usuario1
-        - BASIC_AUTH_PASSWORD_ARG=1234 
+    environment:
+      BASIC_AUTH_USERNAME: ${BASIC_AUTH_USERNAME}
+      BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD}
     ports:
       - "5000:5000"
     networks:
@@ -17,6 +17,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-home
+    environment:
+      BASIC_AUTH_USERNAME: ${BASIC_AUTH_USERNAME}
+      BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD}
     depends_on: 
       - ml-api
     ports:

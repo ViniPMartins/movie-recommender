@@ -13,8 +13,8 @@ app.get('/api', async (req, res) => {
     try {
         const response = await axios.get(url, {
             auth: {
-                username: 'usuario1',
-                password: '1234'
+                username: process.env['BASIC_AUTH_USERNAME'],
+                password: process.env['BASIC_AUTH_PASSWORD']
               }
         });
         res.send(response.data);
@@ -31,8 +31,8 @@ app.post('/api/data', async (req, res) => {
     try {
         const response = await axios.post(url, data_json, {
             auth: {
-                username: 'usuario1',
-                password: '1234'
+                username: process.env['BASIC_AUTH_USERNAME'],
+                password: process.env['BASIC_AUTH_PASSWORD']
               }
         }); // Passa os dados para a função axios.post
         res.send(response.data);
