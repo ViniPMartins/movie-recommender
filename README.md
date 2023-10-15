@@ -30,13 +30,15 @@ Os generos possíveis são:
         'War', 'Western']
 ```
 
-É possivel visualizar um teste da API em: notebooks/Teste API.ipynb
+> Defina seu usuario e sua senha no arquivo `.env`
 
 Para rodar, digite no terminal:
 
 `docker compose up`
 
-Organização do Projeto
+É possivel visualizar um teste da API em: notebooks/Teste API.ipynb
+
+Projeto
 ------------
 
     ├── LICENSE
@@ -53,8 +55,8 @@ Organização do Projeto
     │
     ├── src                 <- Source code for use in this project.
     │   │
-    │   └── app             <- Scripts to run application
-    │       └── main.py
+    |   ├── api             <- Scripts to run API
+    │   └── app             <- Scripts to run frontend application
     │
     └── docker-compose.yaml <- docker compose file to build and run application
 
