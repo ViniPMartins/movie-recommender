@@ -1,6 +1,8 @@
 API Recomendação de Filmes
 ==============================
 
+![image demonstration](demonstration.gif)
+
 > :construction: Projeto em construção :construction:
 
 Este projeto é o desenvolvimento de um API que faz a recomendação de filmes através de um modelo de machine learning (KMEANS).
