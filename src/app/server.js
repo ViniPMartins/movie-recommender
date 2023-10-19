@@ -8,8 +8,11 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "/public")));
 
+const API_URL = process.env['API_URL']
+const API_PORT = process.env['API_PORT']
+
 app.get('/api', async (req, res) => {
-    const url = "http://ml-api:5000";
+    const url = API_URL + ":" + API_PORT;
     try {
         const response = await axios.get(url, {
             auth: {
@@ -25,7 +28,7 @@ app.get('/api', async (req, res) => {
 });
 
 app.post('/api/data', async (req, res) => {
-    const url = "http://ml-api:5000/api/recommender_movie/";
+    const url = API_URL + ":" + API_PORT + "/api/recommender_movie/";
     const data_json = req.body;
     console.log(data_json) // Dados recebidos na requisição POST
     try {
