@@ -1,31 +1,31 @@
 from flask import Flask, request
 from flask_basicauth import BasicAuth
-from sklearn.base import BaseEstimator, TransformerMixin
+# from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
 import pickle
 import os
 
-class List_to_kmeans(BaseEstimator, TransformerMixin):
+# class List_to_kmeans(BaseEstimator, TransformerMixin):
 
-    def __init__(self):
-        pass
+#     def __init__(self):
+#         pass
 
-    def fit(self, X, y=None):
-        return self
+#     def fit(self, X, y=None):
+#         return self
 
-    def transform(self, X):
-        all_generos = ['(no genres listed)', 'Action', 'Adventure', 'Animation', 'Children',
-        'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir',
-        'Horror', 'IMAX', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller',
-        'War', 'Western']
-        dummies_generos = []
-        for gen in all_generos:
-            if gen in X:
-                dummies_generos.append(1)
-            else:
-                dummies_generos.append(0)
+#     def transform(self, X):
+#         all_generos = ['(no genres listed)', 'Action', 'Adventure', 'Animation', 'Children',
+#         'Comedy', 'Crime', 'Documentary', 'Drama', 'Fantasy', 'Film-Noir',
+#         'Horror', 'IMAX', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller',
+#         'War', 'Western']
+#         dummies_generos = []
+#         for gen in all_generos:
+#             if gen in X:
+#                 dummies_generos.append(1)
+#             else:
+#                 dummies_generos.append(0)
 
-        return [dummies_generos]
+#         return [dummies_generos]
 
 pipeline = pickle.load(open('models/pipeline.sav', 'rb'))
 kmeans = pickle.load(open('models/kmeans_algorithm.sav', 'rb'))
