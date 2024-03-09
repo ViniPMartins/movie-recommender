@@ -56,4 +56,4 @@ def recommender_movie():
     return movies_recomended.to_json()
 
 if '__main__' == __name__:
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0')
