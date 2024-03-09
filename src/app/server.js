@@ -13,6 +13,7 @@ const API_PORT = process.env['API_PORT']
 
 app.get('/api', async (req, res) => {
     const url = API_URL + ":" + API_PORT;
+    console.log(url)
     try {
         const response = await axios.get(url, {
             auth: {
@@ -20,16 +21,17 @@ app.get('/api', async (req, res) => {
                 password: process.env['BASIC_AUTH_PASSWORD']
               }
         });
-        res.send(response.data);
+        res.status(200).send(response.data);
     } catch (error) {
         console.error(error);
-        res.status(500).send('Ocorreu um erro ao buscar os dados da API.');
+        res.status(500).send(`Ocorreu um erro ao buscar os dados da API: ${error}`);
     }
 });
 
 app.post('/api/data', async (req, res) => {
     const url = API_URL + ":" + API_PORT + "/api/recommender_movie/";
     const data_json = req.body;
+    console.log(url)
     console.log(data_json) // Dados recebidos na requisição POST
     try {
         const response = await axios.post(url, data_json, {
@@ -38,10 +40,10 @@ app.post('/api/data', async (req, res) => {
                 password: process.env['BASIC_AUTH_PASSWORD']
               }
         }); // Passa os dados para a função axios.post
-        res.send(response.data);
+        res.status(200).send(response.data);
     } catch (error) {
         console.error(error);
-        res.status(500).send(data);
+        res.status(500).send(error);
     }
 });
 

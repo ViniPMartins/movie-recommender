@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-COPY ./requirements.txt /usr/requirements.txt
+COPY ./src/api/requirements.txt /usr/requirements.txt
 COPY ./src /usr/src
 COPY ./models /usr/models
 COPY ./data/processed /usr/data/processed
