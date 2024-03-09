@@ -1,4 +1,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+import pickle
 
 class List_to_kmeans(BaseEstimator, TransformerMixin):
 
@@ -21,3 +24,10 @@ class List_to_kmeans(BaseEstimator, TransformerMixin):
                 dummies_generos.append(0)
 
         return [dummies_generos]
+
+
+def pipeline_data(data):
+
+    scaler = pickle.load(open('models/scaler.sav', 'rb'))
+    all_pipe = Pipeline([('transform_list', List_to_kmeans()), ('scaller', scaler)])
+    return all_pipe.transform(data)

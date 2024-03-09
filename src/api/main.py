@@ -1,11 +1,11 @@
 from flask import Flask, request
 from flask_basicauth import BasicAuth
-from scripts import List_to_kmeans
+from scripts import pipeline_data
 import pandas as pd
 import pickle
 import os
 
-pipeline = pickle.load(open('models/pipeline.sav', 'rb'))
+# pipeline = pickle.load(open('models/pipeline.sav', 'rb'))
 kmeans = pickle.load(open('models/kmeans_algorithm.sav', 'rb'))
 movies_ratings = pd.read_csv('data/processed/movies_ratings.csv', index_col='movieId')
 
@@ -24,7 +24,7 @@ def home():
 @basic_auth.required
 def recommender_movie():
     params = request.get_json()
-    generos_pipe = pipeline.transform(params['generos'])
+    generos_pipe = pipeline_data(params['generos'])
     group_predict = kmeans.predict(generos_pipe)
 
     movies_recomended = movies_ratings.query(

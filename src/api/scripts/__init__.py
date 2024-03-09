@@ -1,5 +1,5 @@
-from .list_to_kmeans import List_to_kmeans
+from .list_to_kmeans import pipeline_data
 
 __all__ = [
-    List_to_kmeans
+    "pipeline_data"
 ]
