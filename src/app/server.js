@@ -47,6 +47,6 @@ app.post('/api/data', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log("Server runing on port 3000");
 });
