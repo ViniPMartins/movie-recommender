@@ -7,6 +7,13 @@ API Recomendação de Filmes
 
 Este projeto é o desenvolvimento de um API que faz a recomendação de filmes através de um modelo de machine learning (KMEANS).
 
+
+Acesse o link a seguir para experimentar a aplicaçõa rodando: (https://mlops-cliente.onrender.com/)[https://mlops-cliente.onrender.com/]
+
+
+Detalhes de desenvolvimento
+==============================
+
 A frontend e servido na porta 3000
 
 A API é servida na porta 5000 e contém 2 endpoints:
