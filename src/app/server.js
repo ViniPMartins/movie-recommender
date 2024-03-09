@@ -1,7 +1,9 @@
 const express = require("express");
+const http = require('http');
 const axios = require('axios');
 const path = require("path");
 const app = new express()
+const server = http.createServer(app)
 
 // Middleware para analisar o corpo da solicitação em JSON
 app.use(express.json());
@@ -47,6 +49,6 @@ app.post('/api/data', async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT, () => {
-    console.log("Server runing on port 3000");
+server.listen(process.env.PORT, () => {
+    console.log(`Server runing on port ${process.env.PORT}`);
 });
