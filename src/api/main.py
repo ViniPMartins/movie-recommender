@@ -27,7 +27,7 @@ def home():
 @app.route('/api/recommender_movie/', methods=['POST'])
 @basic_auth.required
 def recommender_movie():
-    params = json.loads(request.get_json())
+    params = request.get_json()
     generos_pipe = pipeline_data(params['generos'])
     group_predict = kmeans.predict(generos_pipe)
 
