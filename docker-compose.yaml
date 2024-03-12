@@ -13,20 +13,20 @@ services:
       - server_api
 
   home:
-    container_name: home
+    container_name: app
     build:
       context: .
-      dockerfile: Dockerfile-home
+      dockerfile: Dockerfile-app
     environment:
       BASIC_AUTH_USERNAME: ${BASIC_AUTH_USERNAME}
       BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD}
       API_URL: ${API_URL}
       API_PORT: ${API_PORT}
-      PORT: 3000
+      API_PATH: ${API_PATH}
     depends_on: 
       - ml-api
     ports:
-      - "3000:3000"
+      - "8501:8501"
     networks:
       - server_api
 
