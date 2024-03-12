@@ -5,10 +5,10 @@ import os
 import pandas as pd
 
 def get_movies(data):
-    data_json = json.dumps(data)
+    # data_json = json.dumps(data)
     data_auth =(st.secrets["BASIC_AUTH_USERNAME"],st.secrets["BASIC_AUTH_PASSWORD"])
     url = st.secrets["API_URL"] + ":" + st.secrets["API_PORT"] + st.secrets["API_PATH"]
-    response = requests.post(url, json=data_json, auth=data_auth)
+    response = requests.post(url, json=data, auth=data_auth)
     df_movies = pd.read_json(response.text)
     return df_movies
 
