@@ -3,9 +3,6 @@ import requests
 import json
 import os
 import pandas as pd
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def get_movies(data):
     data_json = json.dumps(data)
