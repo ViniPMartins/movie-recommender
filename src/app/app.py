@@ -6,8 +6,8 @@ import pandas as pd
 
 def get_movies(data):
     data_json = json.dumps(data)
-    data_auth =(os.environ.get("BASIC_AUTH_USERNAME"),os.environ.get("BASIC_AUTH_PASSWORD"))
-    url = os.environ.get("API_URL") + ":" + os.environ.get("API_PORT") + os.environ.get("API_PATH")
+    data_auth =(st.secrets["BASIC_AUTH_USERNAME"],st.secrets["BASIC_AUTH_PASSWORD"])
+    url = st.secrets["API_URL"] + ":" + st.secrets["API_PORT"] + st.secrets["API_PATH"]
     response = requests.post(url, json=data_json, auth=data_auth)
     df_movies = pd.read_json(response.text)
     return df_movies
@@ -43,8 +43,8 @@ data = {
 
 if st.button("Generate recommendations", type="primary"):
     with st.spinner("Getting data..."):
-        try:
-            generate_movies = get_movies(data)
-            st.dataframe(generate_movies, use_container_width=True)
-        except:
-            st.error("Unable to obtain data")
+        generate_movies = get_movies(data)
+        st.dataframe(generate_movies, use_container_width=True)
+        # try:
+        # except:
+        #     st.error("Unable to obtain data")
