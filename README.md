@@ -8,13 +8,13 @@ API Recomendação de Filmes
 Este projeto é o desenvolvimento de um API que faz a recomendação de filmes através de um modelo de machine learning (KMEANS).
 
 
-Acesse o link a seguir para experimentar a aplicaçõa rodando: [https://mlops-cliente.onrender.com/](https://mlops-cliente.onrender.com/)
+Acesse o link a seguir para experimentar a aplicaçõa rodando: [https://movie-recommender-with-ai.streamlit.app/](https://movie-recommender-with-ai.streamlit.app/)
 
 
 Detalhes de desenvolvimento
 ==============================
 
-A frontend e servido na porta 3000
+A frontend e servido na porta 8501 (Padrão do streamlit)
 
 A API é servida na porta 5000 e contém 2 endpoints:
 
@@ -52,15 +52,6 @@ Projeto
 
     ├── LICENSE
     ├── README.md           <- The top-level README for developers using this project.
-    ├── data
-    │   └── processed       <- The final, canonical data sets for modeling.
-    │
-    ├── models              <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks           <- Jupyter notebooks.
-    │
-    ├── requirements.txt    <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
     │
     ├── src                 <- Source code for use in this project.
     │   │
