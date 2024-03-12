@@ -43,8 +43,16 @@ data = {
 
 if st.button("Generate recommendations", type="primary"):
     with st.spinner("Getting data..."):
-        generate_movies = get_movies(data)
-        st.dataframe(generate_movies, use_container_width=True)
-        # try:
-        # except:
-        #     st.error("Unable to obtain data")
+        try:
+            generate_movies = get_movies(data)
+            map_column_names = {
+                'title':'Movie Title',
+                'genres':'Movie Genres',
+                'mean_rating':'Average Rating',
+                'n_rating':'Total Reviews'
+            }
+            generate_movies = generate_movies[map_column_names.keys()]
+            generate_movies = generate_movies.rename(columns=map_column_names)
+            st.dataframe(generate_movies, use_container_width=True)
+        except:
+            st.error("Unable to obtain data")
