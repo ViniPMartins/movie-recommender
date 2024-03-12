@@ -5,9 +5,9 @@ import pandas as pd
 import pickle
 import os
 import json
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 # pipeline = pickle.load(open('models/pipeline.sav', 'rb'))
 kmeans = pickle.load(open('models/kmeans_algorithm.sav', 'rb'))
