@@ -10,6 +10,8 @@ Este projeto é o desenvolvimento de um API que faz a recomendação de filmes a
 
 Acesse o link a seguir para experimentar a aplicaçõa rodando: [https://mlops-cliente.onrender.com/](https://mlops-cliente.onrender.com/)
 
+Acesse o link a seguir para experimentar a aplicaçõa rodando com streamlit: [https://movie-recommender-with-ai.streamlit.app/](https://movie-recommender-with-ai.streamlit.app/)
+
 
 Detalhes de desenvolvimento
 ==============================
